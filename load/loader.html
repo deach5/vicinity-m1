@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie11 lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie11 lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie11 lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie11 lt-ie10"> <![endif]-->
+<!--[if IE 10]>        <html class="no-js lt-ie11 lt-ie10"> <![endif]-->
+<!--[if gt IE 10]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title></title>
+<style type="text/css">
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%
+}
+#loading {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+h1, h2, h3, h4 {
+    line-height: 60px;
+    margin-top: 0;
+}
+#container {
+    box-sizing: border-box;
+    color: #A20067;
+    color: rgb(162,0,103);
+    font-family: Arial, sans-serif;
+    width: 100%;
+    height: 500px;
+    padding: 60px 70px !important;
+}
+#container h1 {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 60px;
+    color: #A20067;
+    color: rgb(162,0,103);
+    margin-bottom: 10px;
+}
+hr {
+    margin-bottom: 35px;
+    border-top: 1px solid #A20067;
+
+}
+#container p {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 25px;
+}
+#redirectionConfirmation{
+  display:none;
+  text-align:center;
+  position:absolute;
+  margin-left:-225px;
+  top:30%;
+  left:50%;
+  width:450px;
+  padding:3em;
+  border:1px solid #FFF;
+  background-color:rgba(255,255,255,0.3);
+  -webkit-box-shadow: 0px 0px 30px 5px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 0px 30px 5px rgba(0,0,0,0.3);
+  box-shadow: 0px 0px 30px 5px rgba(0,0,0,0.3);
+}
+#redirectionConfirmation p:first-child{
+  margin-top:0;
+}
+#redirectionConfirmation button{
+  border:2px solid #A20067;
+  background-color:#A20067;
+  color:#FFF;
+  padding:.8em 1em;
+  font-size:1.2em;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  cursor:pointer;
+}
+#redirectionConfirmation button:focus,
+#redirectionConfirmation button:hover{
+  border-color:#4a002f;
+}
+#redirectionConfirmation button::-moz-focus-inner{
+  border: 0;
+  padding: 0;
+}
+#redirectionConfirmation button:first-of-type{
+  margin-right:1em;
+}
+</style>
+<script type="text/javascript">
+if (window.attachEvent) {
+  window.attachEvent('onload', parent.initSystem);
+}else if (window.addEventListener) {
+  window.addEventListener('load', parent.initSystem, false);
+}else {
+  document.addEventListener('load', parent.initSystem, false)
+};
+</script>
+</head>
+<body onLoad="parent.initSystem()">
+<div id="container">
+    <div id="loading">
+        <p>Please wait a moment while we load your course ...</p>
+    </div>
+    <div id="systemDiag"></div>
+    <div id="redirectionConfirmation">
+        <p>Would you like to return to your last location in the course or go to the introduction page?</p>
+        <button onclick="parent.choseDirection(false);">Last location</button><button onclick="parent.choseDirection(true);">Introduction</button>
+    </div>
+</div>
+</body>
+</html>

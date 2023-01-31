@@ -1,0 +1,347 @@
+@font-face {
+	font-family: Lato;
+	src: url('fonts/Lato-Medium.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	font-family: Lato;
+	src: url('fonts/Lato-Bold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: bold;
+}
+@font-face {
+	font-family: Gotham;
+	src: url('fonts/Gotham-Medium.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	font-family: Pluto;
+	src: url('fonts/Pluto Sans W01 Medium.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	font-family: Pluto;
+	src: url('fonts/Pluto Sans W01 Bold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: bold;
+}
+.dropshadow {
+	-webkit-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.5);
+	box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.5);
+}
+.transition_05 {
+	-webkit-transition: .5s;
+	-moz-transition: .5s;
+	-ms-transition: .5s;
+	-o-transition: .5s;
+	transition: .5s;
+}
+.transition_07 {
+	-webkit-transition: .7s;
+	-moz-transition: .7s;
+	-ms-transition: .7s;
+	-o-transition: .7s;
+	transition: .7s;
+}
+.transition_10 {
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	-ms-transition: 1s;
+	-o-transition: 1s;
+	transition: 1s;
+}
+
+.transition_20 {
+	-webkit-transition: 2s;
+	-moz-transition: 2s;
+	-ms-transition: 2s;
+	-o-transition: 2s;
+	transition: 2s;
+}
+.br_05 {
+	border-radius: 5px;
+	padding: 5px;
+}
+.br_10 {
+	border-radius: 10px;
+	padding: 10px;
+}
+.br_15 {
+	border-radius: 15px;
+	padding: 15px;
+}
+.br_20 {
+	border-radius: 20px;
+	padding: 20px;
+}
+.delay_05 {
+	-webkit-transition-delay: .5s;
+	-moz-transition-delay: .5s;
+	-ms-transition-delay: .5s;
+	transition-delay: .5s;
+}
+.delay_10 {
+	-webkit-transition-delay: 1s;
+	-moz-transition-delay: 1s;
+	-ms-transition-delay: 1s;
+	transition-delay: 1s;
+}
+.delay_15 {
+	-webkit-transition-delay: 1.5s;
+	-moz-transition-delay: 1.5s;
+	-ms-transition-delay: 1.5s;
+	transition-delay: 1.5s;
+}
+.delay_20 {
+	-webkit-transition-delay: 2s;
+	-moz-transition-delay: 2s;
+	-ms-transition-delay: 2s;
+	transition-delay: 2s;
+}
+.delay_25 {
+	-webkit-transition-delay: 2.5s;
+	-moz-transition-delay: 2.5s;
+	-ms-transition-delay: 2.5s;
+	transition-delay: 2.5s;
+}
+
+.fadeIn{	opacity:1 !important; }
+.caption {
+	position: relative;
+	padding: 15px;
+	margin-top: 15px;
+	color: #000;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0;
+	background-color: #F5AB86;
+}
+.caption:after {
+	content: "";
+	position: absolute;
+	bottom: -15px;
+	left: 50px;
+	border-width: 15px 15px 0;
+	border-style: solid;
+	border-color: #F5AB86 transparent;
+	display: block;
+	width: 0;
+}
+.caption.top:after {
+	top: -15px;
+	left: 50px;
+	bottom: auto;
+	left: auto;
+	border-width: 0 15px 15px;
+	border-color: #F5AB86 transparent;
+}
+.mustard {
+	background-color: #DFD580 !important;
+}
+.mustard:after {
+	border-color: #DFD580 transparent !important;
+}
+/* ANIMATION STYLES*/
+.caption.slideFromLeft {
+	left: 0px !important;
+	opacity: 1 !important;
+	display: block !important;
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+	-o-transition: 0.5s;
+	transition: 0.5s;
+}
+
+
+
+/* QUESTION SCREENS STYLES*/
+
+.questionActivity .caption{
+	width:520px;
+	opacity:0;
+	position:absolute;
+	top:0px;
+	left:-550px;
+	margin:0px !important;
+	
+}	
+.questionActivity .caption:after{
+	display:none !important;
+	
+			
+}
+.questionActivity .caption.slideFromLeft {
+    left: 90px !important;
+}	
+
+
+.qText , .qOption{
+	vertical-align:top;
+	font-size:18px;
+}
+.qText{
+	width:55%;
+	display:inline-block;
+	box-sizing: border-box;
+}
+.qOption{
+	width: 14%;
+	position: relative;
+	display: inline-block;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+
+
+.qOption input[type=radio]{
+  position: absolute;
+  visibility: hidden;
+}
+
+.qOption label{
+  display: block;
+  position: relative;
+  width:100%;
+  height:30px;
+  padding:5px;
+  z-index: 9;
+  cursor: pointer;
+}
+
+
+.qOption .check{
+	display: block;
+	margin:0 auto;
+	background-color:rgba(255,255,255,1.00);
+	border-radius: 20%;
+	 border: 2px solid #FFFFFF;
+	height: 25px;
+	width: 25px;
+	z-index: 5;
+	-webkit-transition: border .1s linear;
+	-moz-transition: border .1s linear;
+	-ms-transition: border .1s linear;
+	transition: border .1s linear;
+	
+	position: absolute;
+	top: 10px;
+	left: 45px;
+}
+
+.qOption:hover .check {
+  border: 2px solid #888888;
+}
+
+
+input[type=radio]:checked ~ .check {
+  border: 2px solid #FFFFFF;
+  background-color:rgba(234,88,12,1);
+}
+
+
+input[type=radio]:checked ~ label{
+  color: #0DFF92;
+}
+
+
+.questionCont{
+	background-color:rgba(110,187,174,.50);
+    width:75%;
+	margin:0 auto;
+	margin-top:30px;
+	opacity:0;
+	
+}
+.submitBtn{
+	opacity:0;
+}
+
+.playBtn{
+	height:37px;
+	width:37px;
+	background-image:url(../images/gui/audioPlay.png);
+	display:inline-block;
+}
+
+.questionActivity .fbCont{  
+width: 90% !important; 
+margin-top:20px !important;
+}
+
+.questionActivity.active.viewing .questionCont,
+.questionActivity.active.viewing .submitBtn
+{
+		opacity:1 ;
+}
+
+.lt-ie10 .questionActivity.active.viewing .questionCont,
+.lt-ie10 .questionActivity.active.viewing .submitBtn{
+	opacity:0;
+}
+
+
+
+
+.step{
+		position:absolute;
+		height:auto;
+		left:0px;
+		top:0px;
+		background-color:rgba(235,230,214,.50);
+		-webkit-border-radius: 30px;
+		-moz-border-radius: 30px;
+		border-radius: 30px;
+		padding-bottom:50px;
+		
+	}
+	
+	.step h3{
+		background-color:rgba(110,187,174,.5);
+		text-align:center;
+		font-weight:bold;
+		-moz-border-radius-topleft: 30px;
+		-webkit-border-top-left-radius: 30px;
+		border-top-left-radius: 30px;
+		-moz-border-radius-topright: 30px;
+		-webkit-border-top-right-radius: 30px;
+		border-top-right-radius: 30px;
+		line-height:45px;
+		
+		margin:0px;
+		padding:0px;
+		margin-bottom:30px;
+
+	}
+	.step p{
+		font-style:italic;
+		text-align:left;
+		padding-left:10px !important;
+		padding-right:10px !important;
+		
+	}
+	
+	.step h3.twoLines{
+		line-height: normal;
+		padding-left: 30px;
+		padding-right: 30px;
+		height: 55px;
+		padding-top: 10px;		
+	}
+	.stepsCont{
+		position:relative;
+	}
+	
+	.s1{
+		width:270px;
+	}
+	.s2{
+		width:550px;
+		left:300px;
+		background-color:transparent !important;
+	}

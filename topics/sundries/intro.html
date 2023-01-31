@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie11 lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie11 lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie11 lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie11 lt-ie10"> <![endif]-->
+<!--[if IE 10]>        <html class="no-js lt-ie11 lt-ie10"> <![endif]-->
+<!--[if gt IE 10]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8">
+<title>&nbsp;</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="../../assets/css/normalize.css">
+<link href="../../assets/css/visual_styles.css" rel="stylesheet" type="text/css" />
+<link href="../../assets/css/structure_styles.css" rel="stylesheet" type="text/css" />
+<!--[if IE]>
+
+<![endif]-->
+<script src="../../script/plugins/jquery-1.11.0.min.js"></script>
+<script src="../../script/plugins/plugins.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/mediaelements/mediaelement-and-player.min.js"></script>
+
+<script type="text/javascript" >
+
+var ddplayer;
+intro = true
+
+function onLoad() {
+	$('.playBtn').css({display:'inline-block'})
+	//ddplayer = new MediaElementPlayer('#custom-player');	
+	if(!parent.ddipad){
+		$( window ).on({scroll:scrolling})
+	}
+
+	
+	//viewingSection(0)
+	
+
+$('#section_1 .textblock, #section_1 .btn').fadeNext({delay:750})
+
+
+	
+}
+
+
+function iUnderstand(){
+	$('#introsection_2').addClass('');
+	$('.blocker').fadeOut()
+	$('html,body').animate({scrollTop: $('#introsection_2').offset().top},1000);
+	
+	$('#introsection_2 .textblock, #introsection_2 .started').fadeNext({
+		initDelay:2000,
+		delay:750})
+		
+		
+}
+
+
+
+function playRead(btn){
+	
+	var val = $(btn).index('.playRead')
+	
+	$('.selectplaybook').removeClass('sel')
+	$('.selectplaybook').eq(val).addClass('sel')
+	
+	if(val == 0){
+		parent.menu_audio_played = true
+		$(btn).addClass('on')
+	
+		
+	 swapAudio($(btn).data('mp3'))
+		
+		
+	}else{
+		parent.menu_audio_played = false
+		ddplayer.pause();
+	}
+	
+}
+	
+</script>
+<style>
+
+.book{
+	height:37px;
+	width:37px;
+	background-image:url(../../assets/images/gui/book.png);
+	display:inline-block;
+	background-repeat:no-repeat;
+}
+
+#wrapper {
+	margin-bottom: 290px;
+
+}
+#section_1{
+	background-image:none !important
+}
+.textblock{
+	display:table;
+	width:100%;
+	opacity:0;
+}
+
+.cell{
+	display:table-cell;
+	height:150px;
+	border:1px #fff solid;
+	background-color:rgba(182,220,214,1.00);
+	box-sizing:border-box;
+	text-align:center;
+	padding:15px;
+	vertical-align:top;
+	background-position:center;
+	background-repeat:no-repeat;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	
+}
+
+.sel{
+	background-color:#EA580C !important;
+}
+
+.btn{
+	opacity:0;
+}
+
+</style>
+</head>
+
+<body tabindex="-1">
+<div id="scrollVal"></div>
+<div class="nav_wrapper">
+  <nav> </nav>
+</div>
+<div id="wrapper">
+  <header>
+    <div id="dropmenu_wrapper"> <a id="showmenu_button"></a>
+      <div id="dropmenu"> <a>&nbsp;</a> <a href="#section_1" id="home" title="Home" onclick="">Home</a> <a href="javascript:void(0);" title="References" onclick="launchPopup('resources')">References</a><a href="javascript:void(0);" id="exit" title="Save & Exit" onclick="parent.exitCourse(0)">Exit</a> </div>
+    </div>
+  </header>
+  <audio id="custom-player" controls src="#" type="audio/mp3" preload="none"></audio>
+  <div id="main">
+    <section id="section_1" class="delay_10 viewing">
+      <style>
+	
+	#section_1 .cell{width:25%;}
+
+	</style>
+      <h1>Getting the most out of this learning byte.</h1>
+      <div class="page">
+        <div class="textblock">
+          <div class="cell" style="background-image:url(../../assets/images/gui/introicons/clock.png); background-color:transparent"></div>
+          <div class="cell" style="background-image:url(../../assets/images/gui/introicons/menu.png); background-color:transparent"></div>
+          <div class="cell" style="background-image:url(../../assets/images/gui/introicons/full.png); background-color:transparent"></div>
+          <div class="cell" style="background-image:url(../../assets/images/gui/introicons/scroll.png); background-color:transparent"></div>
+        </div>
+        <div class="textblock">
+          <div class="cell">
+            <p align="center">This learning byte will take approximately 5  minutes to complete.</p>
+          </div>
+          <div class="cell">
+            <p align="center">Access this menu to <strong>Exit</strong> the learning byte at any time. You will also find useful information in <strong>References</strong>.</p>
+          </div>
+          <div class="cell">
+            <p align="center">To view in <strong>full screen mode</strong>, maximise your browser window or select <strong>F11</strong> on your keyboard.</p>
+          </div>
+          <div class="cell">
+            <p align="center">You can navigate through the learning byte  by <strong>scrolling down each screen</strong>.</p>
+          </div>
+        </div>
+       <p align="right"> <a href="javascript:void(0)" onClick="iUnderstand()" class="btn">I understand. </a> </p></div>
+    </section>
+    
+    
+    
+    <section id="introsection_2" class="">
+    <div class="blocker"><span></span></div>
+      <style>
+	#introsection_2 .cell{width:50%;}
+	</style>
+      <h1>Getting the most out of this learning byte.</h1>
+      <div class="page">
+        <div class="textblock">
+          <div class="cell" style="background-color:transparent">
+            <p align="center"><strong>I prefer to listen</strong></p>
+            <p align="center"><a  href="javascript:void(0)" class="playRead playBtn" onClick="playRead(this)" data-mp3="t1_s0_aud"></a></p>
+            <p align="center">TIP: <strong>Select</strong> the Play icon now to ensure you  can hear us. </p>
+          </div>
+
+
+          <div class="cell"  style="background-color:transparent">
+            <p align="center"><strong>I prefer to read</strong></p>
+            <p align="center"><a  href="javascript:void(0)" class="book playRead" onClick="playRead(this)"></a></p>
+          </div>
+
+        </div>
+        <div class="textblock">
+          <div class="cell selectplaybook">
+            <p align="center ">This learning byte gives you the option of  listening to content that is presented in text.</p>
+            <p align="center">If you prefer  listening instead of reading, <strong>select</strong> the &ldquo;Play&rdquo; icon shown above when you see it. </p>
+          </div>
+          <div class="cell selectplaybook">
+            <p align="center">This learning byte gives you the option of  reading content that is presented in audio.</p>
+            <p align="center">If you prefer reading  instead of listening, <strong>select</strong> the  &ldquo;Read&rdquo; icon shown above when you see it. </p>
+          </div>
+
+        </div>
+       <p align="right"> <a href="../topic0/page01.html" class="btn started">Let’s get started.</a> </p></div>
+    </section>
+    
+    
+    
+    
+  </div>
+  <!-- #main --> 
+</div>
+<script src="../../script/ddscript.js"></script>
+<script src="../../script/custom.js"></script> 
+<script type="text/javascript" >
+
+
+$('body').imagesLoaded().done( function( instance ){
+  dbg('all images successfully loaded');
+  imgReady = true;
+  setupPage();     
+})
+
+window.onload = function() {
+    dbg('DEBUG:: window.onload');
+	try{
+    	parent.initPageVars();
+	}catch(e){}
+};
+
+</script>
+</body>
+</html>

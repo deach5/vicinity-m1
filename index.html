@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie11 lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie11 lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie11 lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie11 lt-ie10"> <![endif]-->
+<!--[if IE 10]>        <html class="no-js lt-ie11 lt-ie10"> <![endif]-->
+<!--[if gt IE 10]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta charset="utf-8">
+ <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">-->
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+  <title></title>
+  <script src="script/plugins/jquery-1.11.0.min.js"></script>
+  <script src="script/Classes/Class.js"></script>
+  <script src="script/Classes/Topic.js"></script>
+  <script src="script/Classes/APIDummy.js"></script>
+  <script src="script/Classes/Comms1.2.js"></script>
+  <script src="script/Classes/System.js"></script>
+  <script src="script/core.js"></script>
+  <script src="script/config.js"></script>
+  <script src="script/navigation.js"></script>
+  <script src="script/lms.js"></script>
+  <script src="script/plugins/jasonify.js"></script>
+  <script src="script/Classes/browserDetect.js"></script>
+  <script type="text/javascript">
+  
+  
+  
+    //]]>
+	
+ddipad = false
+if(navigator.userAgent.toString().indexOf('iPad') > 0){		
+	 ddipad = true
+	//alert('ipad true')
+}
+	
+	
+    // GLOBALs
+    var cc, course_width, course_height, screen_width, screen_height, player;
+
+    if (navigator.userAgent.match(/iPad;.*CPU.*OS 7_\d/i)) {
+      $('html').addClass('ipad ios7');
+	  ddipad = true
+    };
+    $(document).ready(function (e) {
+      //resizeViewPort(course_width, course_height)
+      $('.no-js').removeClass('no-js');
+
+     //initAudio('blank');
+     // $('.mejs-container').addClass('hidden');
+    });
+
+
+    function resizeViewPort(width, height) {
+      if (window.outerWidth) {
+        window.resizeTo(
+          width + (window.outerWidth - window.innerWidth),
+          height + (window.outerHeight - window.innerHeight)
+        );
+      } else {
+        window.resizeTo(500, 500);
+        window.resizeTo(
+          width + (500 - document.body.offsetWidth),
+          height + (500 - document.body.offsetHeight)
+        );
+      }
+    };
+
+    function showError(e) {
+      $debug('showError:: ' + e);
+      //var l = course_container.getElementById('loading');
+      if (course_container.document) {
+        course_container.document.getElementById('loading').innerHTML = e;
+        return;
+      }
+      if (course_container.contentDocument) {
+        course_container.contentDocument.getElementById('loading').innerHTML = e;
+        return;
+      }
+
+    };
+	
+	function setHeight(){
+	
+		$('body').height('100%')
+		
+		
+	}
+  </script>
+  <style>
+    .no-js body {
+      background: #ebe6d6 url('assets/bwtest/loading.gif') no-repeat center center;
+    }
+    
+    body {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      display: block;
+      
+      background: #fff;
+	background:rgba(235,230,214,0.50)
+    }
+    
+    html {
+      height: 100%;
+      overflow: hidden;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+    
+    @media (orientation:landscape) {
+    }
+    
+    .mejs-container,
+    #mep_0 {
+      margin-left: 23px;
+      overflow: hidden;
+      width: 150px;
+      /* opacity:0 */
+      position: relative;
+      z-index: 2;
+      height: 35px;
+      position: fixed;
+      bottom: 0px;
+      z-index: 1;
+    }
+    
+    /*#mep_0 {
+      left:201px !important;     
+    }*/
+      
+    .mejs-container.hidden,
+    #mep_0.hidden {
+      left: -200px !important;
+    }
+    
+    #controls a {
+      width: 60px;
+    }
+    .preloading {
+      position:absolute;
+      width:0px;
+      height:0px;
+      overflow:hidden;
+    }
+    @media screen and (min-width: 1281px) {
+      .preloading > div:nth-child(1) {
+        
+      }
+      /*.preloading > div:nth-child(2) {
+        background-image: url(assets/images/menu/background_2_big.jpg);
+      }
+      .preloading > div:nth-child(3) {
+        background-image: url(assets/images/menu/background_3_big.jpg);
+      }
+      .preloading > div:nth-child(4) {
+        background-image: url(assets/images/menu/background_4_big.jpg);
+      }*/
+    }
+    
+    @media screen and (max-width: 1280px) {
+      .preloading > div:nth-child(1) {
+        
+      }
+      /*.preloading > div:nth-child(2) {
+        background-image: url(assets/images/menu/background_2.jpg);
+      }
+      .preloading > div:nth-child(3) {
+        background-image: url(assets/images/menu/background_3.jpg);
+      }
+      .preloading > div:nth-child(4) {
+        background-image: url(assets/images/menu/background_4.jpg);
+      }*/
+    }
+  </style>
+</head>
+
+<body onUnload="exitCourse(1)" onbeforeunload="exitCourse(1)">
+  <!-- preload the background image 4 * images -->
+  <div class="preloading" role="presentation" aria-hidden="true">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+<!--  <audio id="custom-player">
+    <source type="audio/mpeg" src="assets/audio/blank.mp3" />
+    <object width="1" height="1" type="application/x-shockwave-flash" data="assets/mediaelements/flashmediaelement.swf">
+      <param name="movie" value="assets/mediaelements/flashmediaelement.swf" />
+      <param name="flashvars" value="assets/audio/blank.mp3" />
+      <param name="BGCOLOR" value="#ECE9E4">
+    </object>
+  </audio>-->
+  <iframe id="course_container"  onLoad="setHeight()" allowfullscreen src="load/loader.html" title="course_container" width="100%" height="100%" frameborder="0"></iframe>
+</body>
+
+</html>

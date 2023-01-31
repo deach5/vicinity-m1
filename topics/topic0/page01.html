@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie11 lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie11 lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie11 lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie11 lt-ie10"> <![endif]-->
+<!--[if IE 10]>        <html class="no-js lt-ie11 lt-ie10"> <![endif]-->
+<!--[if gt IE 10]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8">
+<title>&nbsp;</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="../../assets/css/normalize.css">
+<link href="../../assets/css/visual_styles.css" rel="stylesheet" type="text/css" />
+<link href="../../assets/css/structure_styles.css" rel="stylesheet" type="text/css" />
+<link href="../../assets/mediaelements/mediaelementplayer.min.css" rel="stylesheet" type="text/css" />
+
+<!--[if IE]>
+
+<![endif]-->
+<script src="../../script/plugins/jquery-1.11.0.min.js"></script>
+<script src="../../script/plugins/plugins.js"></script>
+
+
+<script type="text/javascript" language="javascript" src="../../assets/mediaelements/mediaelement-and-player.min.js"></script>
+<script type="text/javascript" >
+
+
+
+
+var ddplayer;
+intro = false
+function onLoad() {
+	//ddplayer = new MediaElementPlayer('#custom-player');	
+	if(!parent.ddipad){
+		$( window ).on({scroll:scrolling})
+	}
+	
+	$('.blocker').on({
+		click:function(){
+		//	$(this).parent().addClass('active')
+			}
+	})
+	
+  	gCurrentSection = $('section').eq(0)		
+	$('section').eq(0).addClass('active')
+
+
+	resizeSetup()
+	viewingSection(0)
+	
+	
+	
+	$('#section_1 .aButton')
+	.setupButtonOver({states:2})
+	.buttonThis({
+		_feedbackClass:'#section_1 .caption',
+		_eventFunc:buttonEvent,
+		_addTick:true
+	})
+	
+	if(ie9){
+		$('#section_1').find('.ie9_ani').fadeNext()	
+	}
+	
+	
+	$('#section_1 .checkBox')
+	.setupButtonOver({states:3,repeat:true})
+	.buttonThis({
+		_feedbackClass:'#section_1 .checkbox_fb',
+		_eventFunc:buttonEvent,
+		mouseEnable:false
+		
+	})
+	
+	$('#section_5 .aButton')
+	.setupButtonOver({states:2})
+	.buttonThis({
+		_feedbackClass:'#section_5 .caption', 
+		_eventFunc:buttonEvent
+		
+		
+	})
+	
+	//sections 8/9/10/11
+	setupQuestions()
+	
+
+	
+}
+
+
+
+	
+function buttonEvent(e){
+	type = e.type
+	aButton = this
+
+	
+	if(aButton.mouseEnable){
+		if(e.type == 'mouseover' ||e.type == 'focusin' ||e.type == 'mouseenter' ){
+			
+			if(aButton.myFeedbackClass != '#section_5 .caption'){
+				$(aButton).css({backgroundPosition:aButton.state_1})	
+			}
+			else{
+				$(aButton).css({opacity:.4})	
+			}
+			
+		}
+		if(e.type == 'mouseout' || e.type == 'focusout' ||e.type == 'mouseleave' ){		
+			
+			
+			if(aButton.myFeedbackClass != '#section_5 .caption'){
+				$(aButton).css({backgroundPosition:aButton.state_0})	
+			}
+			else{
+				$(aButton).css({opacity:0})	
+			}
+			
+							
+		}
+	}
+	
+	
+	if(e.type == 'click' && aButton.mouseEnable){
+		
+	if($(aButton).data('mp3')){	
+		$('.playBtn').removeClass('on')
+		swapAudio($(aButton).data('mp3'))
+	}
+		
+	if(aButton.myFeedbackClass == '#section_1 .caption'){
+			$(aButton.myFeedbackClass).removeClass('slideFromLeft')
+			$(aButton.myFeedback).addClass('slideFromLeft')
+			$(aButton.myTick).show()
+			if(aButton.checkClick()){
+			
+				$('#section_1 .checkBox').addClass('isactive').each(function(index, element) {
+                    this.disableThis(false)
+                });
+			}
+	}
+		
+	//section 1 buttons	events
+	if(aButton.myFeedbackClass == '#section_1 .checkbox_fb'){
+			
+			aButton.$myGroup.css({backgroundPosition:aButton.state_0})
+			$(aButton).css({backgroundPosition:aButton.state_2})
+			aButton.disableAll(true)	
+			$('#section_1 .feedback').fadeIn()					
+			completeSections($('#section_1'))
+			
+	}
+		
+		
+		//section 5 buttons events
+	if(aButton.myFeedbackClass == '#section_5 .caption'){
+			
+			$(aButton.myFeedbackClass).removeClass('slideFromLeft')
+			$(aButton.myFeedback).addClass('slideFromLeft')
+			
+	
+			if(aButton.checkClick()){
+	
+				$('#s5_box2 .pointers').addClass('fadeIn')
+				$('#s5_box2 .pointers2').addClass('fadeIn')
+				completeSections($('#section_5'))
+			}
+			
+		}
+	}
+}
+
+
+</script>
+<style></style>
+</head>
+
+<body tabindex="-1">
+<div class="nav_wrapper">
+  <nav> <a class="nav_button"><span class="num">1</span></a> <a class="nav_button"><span class="num">2</span></a> <a class="nav_button"><span class="num">3</span></a> <a class="nav_button"><span class="num">4</span></a> <a class="nav_button"><span class="num">5</span></a> <a class="nav_button"><span class="num">6</span></a> <a class="nav_button"><span class="num">7</span></a> <a class="nav_button"><span class="num">8</span></a> <a class="nav_button"><span class="num">9</span></a> <a class="nav_button"><span class="num">10</span></a> <a class="nav_button"><span class="num">11</span></a> <a class="nav_button"><span class="num">12</span></a> <a class="nav_button"><span class="num">13</span></a> <a class="nav_button"><span class="num">14</span></a>  </nav>
+</div>
+<div id="wrapper">
+  <header>
+    <div id="dropmenu_wrapper"> <a id="showmenu_button"></a>
+      <div id="dropmenu"> <a>&nbsp;</a> <a href="#section_1" id="home" title="Home" onclick=" ">Home</a> <a href="javascript:void(0);" title="References" onclick="launchPopup('resources')">References</a><a href="javascript:void(0);" id="exit" title="Save & Exit" onclick="parent.exitCourse(0)">Exit</a> </div>
+    </div>
+  </header>
+  <audio id="custom-player" controls src="#" type="audio/mp3" preload="none"></audio>
+  <div id="main"> 
+    
+    <!-- STYLES SECTION 1 -->
+    <style>
+ 	#section_1 .aButtonCont{
+		height:160px;
+		width:128px;
+		margin-right:22px;
+		display:inline-block;
+		position:relative;
+		opacity:0
+ 	}
+	#section_1.active .aButtonCont{	opacity:1;	}	
+	.lt-ie10 #section_1.active .aButtonCont{	opacity:0;	}	
+	
+	.fbCont{width:100%;	}
+	
+	#section_1 .aButton{
+		display:block;
+		height:127px;
+		width:128px;
+		background-image:url(../../assets/images/topics/section1/section1_btns.png);
+		position:relative;
+	}
+	#section_1 .aButton .tick{
+		height:22px;
+		position:absolute;
+		top:0px;
+		right:0px;
+		width:22px;
+		display:none;
+		background-image:url(../../assets/images/gui/round_tick.png);
+		
+	}
+	
+	#section_1 .checkBox{
+		display:block;
+		box-sizing:border-box;
+		
+		background-repeat:no-repeat;
+		background-position:10px center;
+		text-align:center;
+		height:25px;
+		line-height:25px;
+		width:128px;
+		position:absolute;
+		bottom:0px;
+		left:0px;
+		color:#000;
+		opacity:.7;
+		background-image:url(../../assets/images/topics/section1/checkbox_dis.png);
+		cursor:default;
+		
+		
+	}
+	#section_1 .checkBox.isactive{
+		
+		 opacity:1;
+		 cursor:pointer;
+		background-image:url(../../assets/images/topics/section1/checkbox.png);
+	}
+	
+	
+	#section_1 .caption{
+		width:600px;
+		opacity:0;
+		position:absolute;
+		top:0px;
+		left:-600px;
+		
+	}	
+	#section_1 .c1:after{	left: 50px !important;}
+	#section_1 .c2:after{	left: 202px  !important;}
+	#section_1 .c3:after{	left: 354px !important;}
+	#section_1 .c4:after{	left: 506px !important;}
+	
+	.checkbox_fb{
+		position: absolute;
+		right: 0px;
+		top: 0px;;
+		width: 250px;
+		padding:15px;
+		display:none;
+
+	}
+
+</style>
+    <!-- END STYLE SECTION 1 -->
+    <section id="section_1" class="delay_10 hasActivity" data-mp3="t1_s1a_aud">
+      <h1>Who can you confide in?</h1>
+      <div class="page">
+        <div class="textBlock" style="width:500px">
+          <p>Imagine you had an issue at home that was affecting your work life.  You need some time-off to resolve the issue, however, it will require a  personal conversation. If you had a choice of people leader, who would you  rather confide in?</p>
+          <p><strong>Select</strong> each image to learn a little  more about them. When you&rsquo;re done, <strong>tick</strong> the name of the people leader you wish to confide in.</p>
+        </div>
+        <div class="buttonsCont">
+          <div class="aButtonCont delay_05 transition_07 ie9_ani"><a class="aButton" data-mp3="t1_s1b_aud"></a><a class="checkBox"> Barbara </a></div>
+          <div class="aButtonCont delay_10 transition_07 ie9_ani"><a class="aButton" data-mp3="t1_s1c_aud"></a><a class="checkBox"> Wendy </a></div>
+          <div class="aButtonCont delay_15 transition_07 ie9_ani"><a class="aButton" data-mp3="t1_s1d_aud"></a><a class="checkBox"> Michael </a></div>
+          <div class="aButtonCont delay_20 transition_07 ie9_ani"><a class="aButton" data-mp3="t1_s1e_aud"></a><a class="checkBox"> Rob </a></div>
+          <div class="checkbox_fb feedback dropshadow">
+            <p>Who would you rather confide in? Why do you trust your chosen  confidant more than the others?</p>
+            <p>Why do you <em>even </em>need trust  in this situation?</p>
+            <p>Let's answer that  last question, first...</p>
+          </div>
+        </div>
+        <div class="fbCont">
+          <div class="c1 caption top dropshadow transition_07">
+            <p>Barbara is an experienced senior people leader. While some of her team members think that she's great, others say she only does things if they benefit her and doesn't really go out of her way for anyone else.</p>
+          </div>
+          <div class="c2 caption top dropshadow transition_07">
+            <p>Wendy doesn't smile much and her team think she takes things too seriously. On the plus side though, they say she's a great listener and gives really good advice. </p>
+          </div>
+          <div class="c3 caption top dropshadow transition_07">
+            <p>Michael's team love working for him. He makes work fun and loves to crack jokes. Sometimes though, he can push things a bit far by making fun of other's problems or putting people down. </p>
+          </div>
+          <div class="c4 caption top dropshadow transition_07">
+            <p>Rob is a new people leader. He's always on the go. Even if he does have a moment to chat, he doesn't appear to be listening and is always looking at his phone messages.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!--//////////////////////////////////////////////////////////////////////// END SECTION-->
+    
+    <section id="section_2" class="delay_10"  data-mp3="t1_s2_aud"> 
+      
+      <!-- STYLES SECTION 2 -->
+      <style>
+
+#section_2 .textBlock{
+	background-color:rgba(0,0,0,0.50);
+	color:#fff;
+	position:absolute;
+	left:-530px;
+	width:530px;
+	padding:20px 60px 40px 70px;
+}
+
+
+
+</style>
+      <!-- END STYLE SECTION 2 -->
+      
+      <div class="blocker"> <span></span> </div>
+      <h1>High stakes</h1>
+      <div class="page">
+        <div class="textBlock ie9_ani">
+          <p>A <strong>conversation</strong> <strong>that matters</strong> may be high stakes because  it can:</p>
+          <ul>
+            <li> Challenge our beliefs about ourselves</li>
+            <li>Make us feel vulnerable</li>
+            <li>Raise uncomfortable uncertainties</li>
+            <li> Carry potential for loss, and/or</li>
+            <li>Increase the possibility of conflict.</li>
+          </ul>
+          <p>On the other hand, they can also be energising and motivating by providing  feedback for recognition and effort. </p>
+        </div>
+      </div>
+    </section>
+    
+    <!--//////////////////////////////////////////////////////////////////////// END SECTION-->
+    
+    <section id="section_3"  class="delay_10"> 
+      
+      <!-- STYLES SECTION 3 -->
+      <style>
+
+#s3_box1{
+	position:absolute;
+	left:40px;
+	top:90px;
+	opacity:0
+
+}
+
+#s3_box2{
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color:#fff;
+	font-size:30px;
+	position:absolute;
+	right:100px;
+	width:450px;
+	bottom:30px;
+	opacity:0;
+	text-align:center;
+
+}
+
+
+
+
+
+</style>
+      <!-- END STYLE SECTION 3 -->
+      
+      <div class="blocker"><span></span></div>
+      <div id="s3_box1" class="textBlock ie9_ani"> <img src="../../assets/images/topics/section3/s3_speechbubble.png" width="304" height="424" alt=""/> </div>
+      <div id="s3_box2" class="textBlock ie9_ani"><span style="color:#333333">A</span> conversation that matters <span style="color:#333333">requires</span> trust. </div>
+    </section>
+    
+    <!--//////////////////////////////////////////////////////////////////////// END SECTION-->
+    
+    <section id="section_4" class="delay_10"  data-mp3="t1_s4_aud"> 
+      
+      <!-- STYLES SECTION 4 -->
+      <style>	
+#s4_box1{
+	width:380px;
+	color:#000;
+}
+#section_4 .br_20{
+	background-color:rgba(255,255,255,.75);
+	position:absolute;
+	width:300px;
+	opacity:0;
+	top:280px;
+
+}
+
+#section_4 .br_20 span{
+	display:inline-block;
+	width: 125px;
+	box-sizing:border-box;
+	line-height:30px;
+	vertical-align:top;
+	
+}
+#s4_box2{left:100px;}
+#s4_box3{right:100px;}
+
+
+#s4_box4{
+	position:absolute;
+	width:350px;
+	bottom:10px;
+	right:70px;
+	opacity:0;
+	
+}
+</style>
+      <!-- END STYLE SECTION 4 -->
+      
+      <div class="blocker"> <span></span> </div>
+      <h1>Make or break?</h1>
+      <div class="page">
+        <div id="s4_box1" class="textBlock ">
+          <p>Here is a list put together by Vicinity team members on what they think makes and breaks trust.</p>
+          <p>Do you agree with your colleagues?</p>
+        </div>
+        <div id="s4_box2" class="textBlock br_20  ie9_ani">
+          <h2>Make</h2>
+          <span>Consistency</span> <span>Respect</span> <span>Honesty</span> <span>Rapport</span> <span>Transparency</span> <span>Approachable</span> <span>Empathy</span> <span>Integrity</span> <span>Friendship</span> </div>
+        <div id="s4_box3" class="textBlock br_20  ie9_ani">
+          <h2>Break</h2>
+          <span>Dishonesty</span> <span> Inconsistency</span> <span> Lying</span> <span> Exclusion</span> <span> Back-stabbing</span> <span> Belittling</span> <span> Smoke &amp; mirrors</span> <span> Personal gain</span> <span> Unreliable </span> </div>
+        <div id="s4_box4" class="textBlock  ie9_ani" style="color:#fff">
+          <p>All of these factors go a long way in creating (or destroying) trust.</p>
+          <p>Let's simplify it by using the following equation... </p>
+        </div>
+      </div>
+    </section>
+    
+    <!--//////////////////////////////////////////////////////////////////////// END SECTION-->
+    
+    <section id="section_5" class="delay_10 hasActivity"  data-mp3="t1_s5_aud"> 
+      <!-- STYLES SECTION 5 -->
+      <style>
+#s5_box1{
+	width:550px;
+}
+	  
+#s5_box2 {
+  width:658px;
+  height:192px;
+  background-image:url(../../assets/images/topics/section5/equation.png);
+  margin-left:150px;
+}
+
+
+#s5_box2 .pointers{
+	position:absolute;
+	width:100%;
+	height:100%;
+	opacity:0;
+	background-image:url(../../assets/images/topics/section5/pointers.png);
+}
+#s5_box2 .pointers2{
+position: absolute;
+width: 60px;
+height: 70px;
+opacity:0;
+left: -60px;
+top: -10px;
+background-image: url(../../assets/images/topics/section5/newbit.png);
+}
+
+#section_5 .caption{
+	width:600px;
+	opacity:0;
+	position:absolute;
+	top:0px;
+	left:-600px;
+	
+}
+#section_5 .fbCont{
+	 margin-left:150px;
+}
+
+#section_5 .c5:after{	left: 50px !important;}
+#section_5 .c2:after{	left: 202px  !important;}
+#section_5 .c3:after{	left: 320px !important;}
+#section_5 .c4:after{	left: 416px !important;}
+#section_5 .c1:after{	left: 311px !important;}
+
+#section_5 .aButton{
+	display:block;
+	position:absolute;
+	box-sizing:border-box;
+	background-color:#fff;
+	opacity:1;
+	top: 40px;
+	z-index:1;
+}
+
+
+	  
+#s5_abutton1 {
+	left:290px;
+	top:122px !important;
+	width:75px;
+	height:69px;
+}
+
+	  
+#s5_abutton5 {
+	left: 0px;
+	width:144px; 
+	height:78px; 
+}
+#s5_abutton2 {
+	left:180px;
+	width:75px; 
+	height:69px;
+}
+#s5_abutton3 {
+	left:290px;
+	width:75px;
+	height:69px;
+}
+#s5_abutton4 {
+	left:390px;
+	width:75px; 
+	height:69px; 
+}
+.s5_large{
+	font-size:20px;
+	font-weight:bold;
+}
+
+	  
+
+    </style>
+      <!-- END STYLE SECTION 5 -->
+      <div class="blocker"> <span></span> </div>
+      <h1>The Trust Equation</h1>
+      <div class="page">
+        <div id="s5_box1" class="textBlock ">
+          <p>Creating trust doesn't mean you need to be an expert at algebra... </p>
+          <p>You just need Credibility, Reliability, Intimacy and a lot less Self-Interest. </p>
+          <p><strong>Select</strong> each variable in the equation to learn more about what it means. </p>
+        </div>
+        <div id="s5_box2" class="buttonsCont">
+        <div class="pointers2"></div>
+          <div class="pointers "></div>
+          <a id="s5_abutton5" class="aButton"></a> <a id="s5_abutton2" class="aButton"></a> <a id="s5_abutton3" class="aButton"></a> <a id="s5_abutton4" class="aButton"></a> <a id="s5_abutton1" class="aButton"></a> </div>
+        <div class="fbCont">
+        
+        <div class="c5 caption top dropshadow mustard">
+            <p>Your level of Trust is the sum of your <span class="s5_large">words</span>, <span class="s5_large">actions</span> and the <span class="s5_large">emotions</span> you evoke in others. </p>
+            <p>Be aware though that it can be eroded by motives of self-interest. </p>
+          </div>
+          
+          <div class="c2 caption top dropshadow mustard">
+            <p>Credibility has to do with the <span class="s5_large">words</span> you speak and is influenced by your presence and technical expertise.</p>
+          </div>
+          <div class="c3 caption top dropshadow mustard">
+            <p>Reliability has to do with your <span class="s5_large">actions</span> and whether people think you’re dependable and can be trusted to behave in consistent ways. </p>
+          </div>
+          <div class="c4 caption top dropshadow mustard">
+            <p>Intimacy has to do with <span class="s5_large">emotions</span> and refers to the safety or security people feel when entrusting you with something.</p>
+          </div>
+          
+          <div class="c1 caption top dropshadow mustard">
+            <p>Self-interest refers to <span class="s5_large">motives</span>. It is whether you appear to be more focused on yourself than the other person or in trying to help.</p>
+          </div>
+          
+          
+          
+        </div>
+      </div>
+    </section>
+    <!--//////////////////////////////////////////////////////////////////////// END SECTION-->
+    <section id="section_6"  class="delay_20"> 
+      
+      <!-- STYLES SECTION 6 -->
+      <style>	  
+	#section_6 .textBlock{
+	color:#333333;
+	text-align:center;
+	padding:15px;
+	font-size:40px;
+	font-weight:bold;
+	position:absolute;
+	opacity:0;
+	width:400px;
+	}
+	
+	#s6_box1{left:70px;	top:135px;}	
+	#s6_box2{left:550px; top:400px;}
+	
+
+</style>
+      <!-- END STYLE SECTION 6 -->
+      
+      <div class="blocker"><span></span></div>
+      <h1>How trustworthy are you?</h1>
+      <div  id="s6_box1" class="textBlock  ie9_ani">How trustworthy are you?</div>
+      <div id="s6_box2" class="textBlock  ie9_ani">Let's find out...</div>
+    </section>
+    
+    <!--//////////////////////////////////////////////////////////////////////// END SECTION-->
+    
+    <!--<section id="section_7" class="cream"  data-mp3="t1_s7_aud"> 
+   
+      <style>
+
+
+	
+</style>
+     
+      <div class="blocker delay_25"> <span></span> </div>
+      <h1>Rate yourself</h1>
+      <div class="page">
+        
+      </div>
+    </section>-->
+    
+    <!--//////////////////////////////////////////////////////////////////////// END SECTION-->
+    
+    <section id="section_8" class="delay_10 cream hasActivity questionActivity" data-mp3="t1_s7_aud"> 
+      <!-- STYLES SECTION 8 -->
+      <style>
+
+#s7_box1{
+	width:500px;
+}
+
+
+</style>
+      <!-- END STYLE SECTION 8 -->
+      <div class="blocker"> <span></span> </div>
+      <h1>Rate yourself</h1>
+     
+      <div class="page">
+      
+      <div id="s7_box1" class="textBlock">
+          <p>It can be challenging to think of ourselves as untrustworthy….</p>
+          <p>But let's try it anyway. (It'll just be between you and yourself anyway).</p>
+          <p><strong>Tick</strong> the boxes and <strong>press</strong> Submit for each activity.</p>
+        </div>
+        </div>
+        
+        
+        <div class="page">
+        <h2 style="margin-top:30px">Credibility</h2> 
+        <div class="questionCont br_20 ie9_ani">
+          <div class="qHeader">
+            <div class="qText"> &nbsp;</div>
+            <div class="qOption">Sometimes</div>
+            <div class="qOption">Often</div>
+            <div class="qOption">Always</div>
+          </div>
+          <div class="aQuestion">
+            <div class="qText">I am authentic and genuine.</div>
+            <div class="qOption">
+              <input type="radio" id="s8q1_option1" name="s8q1_input" autocomplete="off">
+              <label for="s8q1_option1"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s8q1_option2" name="s8q1_input" autocomplete="off">
+              <label for="s8q1_option2"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s8q1_option3" name="s8q1_input" autocomplete="off">
+              <label for="s8q1_option3"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+          </div>
+          <div class="aQuestion delay_10  transition_07">
+            <div class="qText">My promises turn into action.</div>
+            <div class="qOption">
+              <input type="radio" id="s8q2_option1" name="s8q2_input"  autocomplete="off">
+              <label for="s8q2_option1"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s8q2_option2" name="s8q2_input" autocomplete="off">
+              <label for="s8q2_option2"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s8q2_option3" name="s8q2_input" autocomplete="off">
+              <label for="s8q2_option3"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+          </div>
+          <div class="aQuestion delay_15  transition_07">
+            <div class="qText">I am perceived as knowing what I’m talking about.</div>
+            <div class="qOption">
+              <input type="radio" id="s8q3_option1" name="s8q3_input" autocomplete="off">
+              <label for="s8q3_option1"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s8q3_option2" name="s8q3_input" autocomplete="off">
+              <label for="s8q3_option2"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s8q3_option3" name="s8q3_input" autocomplete="off">
+              <label for="s8q3_option3"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fbCont" >
+          <p align="right"><a id="s8_submit" class="btn submitBtn disabled"> Submit</a></p>
+          <div class="caption dropshadow transition_07">
+            <p>You need to do some serious work on your Credibility (your words). Here are some tips on creating better Credibility: </p>
+            <p>- Plan and prepare - Tell the truth - Don’t exaggerate - If you don’t know, say so - Ask questions and be curious, listen to others </p>
+          </div>
+          <div class="caption dropshadow transition_07">
+            <p>You're going okay but you can improve a little more on your Credibility (your words). Here are some tips on creating better Credibility: </p>
+            <p>- Plan and prepare - Tell the truth - Don’t exaggerate - If you don’t know, say so - Ask questions and be curious, listen to others </p>
+          </div>
+          <div class="caption dropshadow transition_07">
+            <p>Great. Seems like your Credibility (your words) is pretty good. Here are some tips on creating better Credibility: </p>
+            <p>- Plan and prepare - Tell the truth - Don’t exaggerate - If you don’t know, say so - Ask questions and be curious, listen to others </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!--//////////////////////////////////////////////////////////////////////// END SECTION-->
+    
+    <section id="section_9" class="delay_10 cream hasActivity questionActivity"> 
+      <!-- STYLES SECTION 9 -->
+      <style>
+
+
+
+
+</style>
+      <!-- END STYLE SECTION 9 -->
+      <div class="blocker"> <span></span> </div>
+      
+      <div class="page">
+      <h2 style="margin-top:30px">Reliability</h2>
+        <div class="questionCont br_20 ie9_ani">
+        
+          <div class="qHeader">
+            <div class="qText"> &nbsp;</div>
+            <div class="qOption">Sometimes</div>
+            <div class="qOption">Often</div>
+            <div class="qOption">Always</div>
+          </div>
+          <div class="aQuestion">
+            <div class="qText">I do what I say I will do.</div>
+            <div class="qOption">
+              <input type="radio" id="s9q1_option1" name="s9q1_input" autocomplete="off">
+              <label for="s9q1_option1"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s9q1_option2" name="s9q1_input" autocomplete="off">
+              <label for="s9q1_option2"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s9q1_option3" name="s9q1_input" autocomplete="off">
+              <label for="s9q1_option3"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+          </div>
+          <div class="aQuestion delay_10  transition_07">
+            <div class="qText">I always follow up.</div>
+            <div class="qOption">
+              <input type="radio" id="s9q2_option1" name="s9q2_input"  autocomplete="off">
+              <label for="s9q2_option1"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s9q2_option2" name="s9q2_input" autocomplete="off">
+              <label for="s9q2_option2"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s9q2_option3" name="s9q2_input" autocomplete="off">
+              <label for="s9q2_option3"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+          </div>
+          <div class="aQuestion delay_15  transition_07">
+            <div class="qText">I am consistent in the way I behave.</div>
+            <div class="qOption">
+              <input type="radio" id="s9q3_option1" name="s9q3_input" autocomplete="off">
+              <label for="s9q3_option1"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s9q3_option2" name="s9q3_input" autocomplete="off">
+              <label for="s9q3_option2"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s9q3_option3" name="s9q3_input" autocomplete="off">
+              <label for="s9q3_option3"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fbCont" >
+          <p align="right"><a id="s9_submit" class="btn submitBtn disabled"> Submit</a></p>
+          <div class="caption dropshadow transition_07">
+            <p>You need to do some serious work on your Reliability (your actions). Here are some tips on creating better Reliability: </p>
+            <p>- Be consistent - Do what you say you are going to do - If you can’t keep a promise, flag this early -Focus on what is most important – Consider the broader context and why you are doing what you are doing </p>
+          </div>
+          <div class="caption dropshadow transition_07">
+            <p>You're going okay but you can improve a little more on your Reliability (your actions). Here are some tips on creating better Reliability: </p>
+            <p>- Be consistent - Do what you say you are going to do - If you can’t keep a promise, flag this early -Focus on what is most important – Consider the broader context and why you are doing what you are doing </p>
+          </div>
+          <div class="caption dropshadow transition_07">
+            <p>Great. Seems like your Reliability (your actions) is pretty good. Here are some tips on creating better Reliability: </p>
+            <p>- Be consistent - Do what you say you are going to do - If you can’t keep a promise, flag this early -Focus on what is most important – Consider the broader context and why you are doing what you are doing </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!--//////////////////////////////////////////////////////////////////////// END SECTION-->
+    
+    <section id="section_10" class="delay_10 cream hasActivity questionActivity"> 
+      <!-- STYLES SECTION 10 -->
+      <style>
+
+
+
+
+</style>
+      <!-- END STYLE SECTION 10 -->
+      <div class="blocker"> <span></span> </div>
+      
+      <div class="page">
+      <h2  style="margin-top:30px">Intimacy</h2>
+        <div class="questionCont br_20 ie9_ani">
+          <div class="qHeader">
+            <div class="qText"> &nbsp;</div>
+            <div class="qOption">Sometimes</div>
+            <div class="qOption">Often</div>
+            <div class="qOption">Always</div>
+          </div>
+          <div class="aQuestion">
+            <div class="qText">I make an effort to understand people more broadly.</div>
+            <div class="qOption">
+              <input type="radio" id="s10q1_option1" name="s10q1_input" autocomplete="off">
+              <label for="s10q1_option1"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s10q1_option2" name="s10q1_input" autocomplete="off">
+              <label for="s10q1_option2"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s10q1_option3" name="s10q1_input" autocomplete="off">
+              <label for="s10q1_option3"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+          </div>
+          <div class="aQuestion delay_10 ">
+            <div class="qText">People feel comfortable sharing their concerns with me.</div>
+            <div class="qOption">
+              <input type="radio" id="s10q2_option1" name="s10q2_input"  autocomplete="off">
+              <label for="s10q2_option1"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s10q2_option2" name="s10q2_input" autocomplete="off">
+              <label for="s10q2_option2"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s10q2_option3" name="s10q2_input" autocomplete="off">
+              <label for="s10q2_option3"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+          </div>
+          <div class="aQuestion delay_15  ">
+            <div class="qText">I enjoy the company of my colleagues.</div>
+            <div class="qOption">
+              <input type="radio" id="s10q3_option1" name="s10q3_input" autocomplete="off">
+              <label for="s10q3_option1"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s10q3_option2" name="s10q3_input" autocomplete="off">
+              <label for="s10q3_option2"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s10q3_option3" name="s10q3_input" autocomplete="off">
+              <label for="s10q3_option3"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fbCont" >
+          <p align="right"><a id="s10_submit" class="btn submitBtn disabled"> Submit</a></p>
+          <div class="caption dropshadow transition_07">
+            <p>You need to do some serious work on your Intimacy (the way people feel around you). Here are some tips on creating better Intimacy: </p>
+            <p>- Balance your focus on tasks and people - Be genuine - Let the other person fill the empty spaces in conversation – Listen, show empathy and understanding </p>
+          </div>
+          <div class="caption dropshadow transition_07">
+            <p>You're going okay but you can improve a little more on your Intimacy (the way people feel around you). Here are some tips on creating better Intimacy: </p>
+            <p>- Balance your focus on tasks and people - Be genuine - Let the other person fill the empty spaces in conversation – Listen, show empathy and understanding </p>
+          </div>
+          <div class="caption dropshadow transition_07">
+            <p>Great. Seems like your Intimacy (the way people feel around you) is pretty good. Here are some tips on creating better Intimacy: </p>
+            <p>- Balance your focus on tasks and people - Be genuine - Let the other person fill the empty spaces in conversation – Listen, show empathy and understanding </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!--//////////////////////////////////////////////////////////////////////// END SECTION-->
+    
+    <section id="section_11" class="delay_11 cream hasActivity questionActivity"> 
+      <!-- STYLES SECTION 11 -->
+      <style>
+
+
+
+
+</style>
+      <!-- END STYLE SECTION 11 -->
+      <div class="blocker"> <span></span> </div>
+    
+      <div class="page">
+        <h2 style="margin-top:30px">Self-interest</h2>
+        <div class="questionCont br_20 ie9_ani">
+          <div class="qHeader">
+            <div class="qText"> &nbsp;</div>
+            <div class="qOption">Sometimes</div>
+            <div class="qOption">Often</div>
+            <div class="qOption">Always</div>
+          </div>
+          <div class="aQuestion">
+            <div class="qText">I find mutually beneficial solutions.</div>
+            <div class="qOption">
+              <input type="radio" id="s11q1_option1" name="s11q1_input" autocomplete="off">
+              <label for="s11q1_option1"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s11q1_option2" name="s11q1_input" autocomplete="off">
+              <label for="s11q1_option2"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s11q1_option3" name="s11q1_input" autocomplete="off">
+              <label for="s11q1_option3"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+          </div>
+          <div class="aQuestion delay_11 ">
+            <div class="qText">I’m interested in what’s important to others.</div>
+            <div class="qOption">
+              <input type="radio" id="s11q2_option1" name="s11q2_input"  autocomplete="off">
+              <label for="s11q2_option1"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s11q2_option2" name="s11q2_input" autocomplete="off">
+              <label for="s11q2_option2"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s11q2_option3" name="s11q2_input" autocomplete="off">
+              <label for="s11q2_option3"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+          </div>
+          <div class="aQuestion delay_15 ">
+            <div class="qText">I have a desire to help colleagues.</div>
+            <div class="qOption">
+              <input type="radio" id="s11q3_option1" name="s11q3_input" autocomplete="off">
+              <label for="s11q3_option1"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s11q3_option2" name="s11q3_input" autocomplete="off">
+              <label for="s11q3_option2"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+            <div class="qOption">
+              <input type="radio" id="s11q3_option3" name="s11q3_input" autocomplete="off">
+              <label for="s11q3_option3"></label>
+              <div class="check">
+                <div class="inside"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fbCont" >
+          <p align="right"><a id="s11_submit" class="btn submitBtn disabled"> Submit</a></p>
+          <div class="caption dropshadow transition_07">
+            <p>You need to do some serious work on becoming more interested in others. Here are some tips on showing more interest in others: </p>
+            <p>- Use open-ended questions - Define the problem rather than guessing the solution - Listen, listen, listen! - Identify what is important and what the other person cares about, check assumptions </p>
+          </div>
+          <div class="caption dropshadow transition_07">
+            <p>You're going okay but you can improve a little more in your interest of others. Here are some tips on showing more interest in others: </p>
+            <p>- Use open-ended questions - Define the problem rather than guessing the solution - Listen, listen, listen! - Identify what is important and what the other person cares about, check assumptions </p>
+          </div>
+          <div class="caption dropshadow transition_07">
+            <p>Great. Seems like your interest in those around you is pretty good. Here are some tips on showing more interest in others: </p>
+            <p>- Use open-ended questions - Define the problem rather than guessing the solution - Listen, listen, listen! - Identify what is important and what the other person cares about, check assumptions </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!--//////////////////////////////////////////////////////////////////////// END SECTION-->
+    
+    <section id="section_12"  class="" data-mp3="t1_s12_aud"> 
+      
+      <!-- STYLES SECTION 12 -->
+      <style>
+#s12_box1,#s12_box2{
+	position:absolute;
+	left:80px;
+	top:65px;
+	opacity:0
+
+}
+
+#s12_box2{
+left: 270px;
+top: 460px;
+
+}
+
+
+</style>
+      <!-- END STYLE SECTION 12 -->
+      
+      <div class="blocker"><span></span></div>
+      <h1>&nbsp;</h1>
+      <img src="../../assets/images/topics/section12/s12_text.png" width="582" height="319" alt="" id="s12_box1" class="transition_07 delay_05 ie9_ani"/> <img src="../../assets/images/topics/section12/s12_text2.png" width="652" height="101" alt="" id="s12_box2" class="transition_07 delay_20 ie9_ani"/> </section>
+    
+    <!--//////////////////////////////////////////////////////////////////////// END SECTION-->
+    
+    <section id="section_13"  class="hasActivity" data-mp3="t1_s13_aud"> 
+      
+      <!-- STYLES SECTION 13 -->
+      <style>
+
+#s13_box1{
+	width:350px;
+}
+	
+
+
+	#s15_box1{
+		width:500px;
+
+	}
+	
+	#s15_box2{
+height: 520px;
+overflow: hidden;
+position: absolute;
+width: 500px;
+top: 100px;
+left: 410px;
+	
+	}
+	
+	.s15_step{
+		position:absolute;
+		width:90%;
+		height:auto;
+		left:5%;
+		top:400px;
+		opacity:0;
+		background-color:rgba(235,230,214,.50);
+		-webkit-border-radius: 30px;
+		-moz-border-radius: 30px;
+		border-radius: 30px;
+		padding-bottom:50px;
+		
+	}
+
+
+	
+	
+	.s15_step h3{
+		background-color:rgba(110,187,174,.5);
+		text-align:center;
+		font-weight:bold;
+		-moz-border-radius-topleft: 30px;
+		-webkit-border-top-left-radius: 30px;
+		border-top-left-radius: 30px;
+		-moz-border-radius-topright: 30px;
+		-webkit-border-top-right-radius: 30px;
+		border-top-right-radius: 30px;
+		line-height:45px;
+		
+		margin:0px;
+		padding:0px;
+		margin-bottom:30px;
+
+	}
+	.s15_step p{
+		font-style:italic;
+		text-align:center;
+		padding-left:30px;
+		padding-right:30px;
+		
+	}
+	
+	h3.twoLines{
+		line-height: normal;
+		padding-left: 30px;
+		padding-right: 30px;
+		height: 55px;
+		padding-top: 10px;		
+	}
+	
+	.moArrows {
+		height:65px;
+		width:66px;
+		background-image:url(../../assets/images/gui/slideDownArrow.png);
+		display:block;
+		position:absolute;
+		left:175px;
+		bottom:-50px;
+	}
+	.moArrows.bb {
+		bottom:auto;		
+		top:-50px;
+		background-image:url(../../assets/images/gui/slideUpArrow_small.png);
+		background-position: center center;
+		opacity:.5;
+	
+
+
+	}
+	#s15_finalstep h3.twoLines{
+		-webkit-border-radius: 30px;
+		-moz-border-radius: 30px;
+		border-radius: 30px;
+		height: 75px;
+		padding-top: 30px;
+	}
+	#s15_finalstep{
+		background-color:transparent !important;
+	}
+	#sect_15{
+		position:absolute;
+		width:400px;
+		border:1px red solid;
+		top:0px;
+		left:360px;
+		
+	}
+</style>
+
+      <script>
+
+$(document).ready(function(e) {
+	
+	$('.s15_step').sliderThis().eq(0).addClass('slideIn').animate({top:'100',opacity:1},750)
+	
+   
+});
+
+function sliderNextClick(step){
+	
+	$('#s15_box2 .slideIn').animate({top:'100',opacity:1},750)
+	$('#s15_box2 .slideOut').animate({top:'-400',opacity:0},200)
+
+			
+}
+
+function sliderBackClick(step){
+	
+	$('#s15_box2 .slideIn').animate({top:'100',opacity:1},750)
+	$(step).animate({top:'400',opacity:0},200)
+	//$('#s15_box2 .s15_step').not( ".slideIn, .lideOut" ).animate({top:'400',opacity:0},200)
+}
+
+function lastSection(lastNext){
+	
+	trace('las step')
+	completeSections($('#section_13'))
+}
+</script> 
+
+
+
+
+      <div class="blocker delay_25"> <span></span> </div>
+      <h1>The Blinking Word</h1>
+      <div class="page">
+        <div id="s13_box1" class="textBlock">
+          <p>One of the most effective ways to build trust in the moment is through a mindful listening technique known as 'The Blinking Word'.</p>
+          <p style=""><strong>Here's how it works...</strong></p>
+          
+             <p><strong>Consider what Samantha is sharing with her people leader: </strong></p>
+          <p style="font-size:28px;"><strong>“I’m having trouble with one of my team members. He seems to lack motivation for the job”.</strong></p>
+          
+          
+        </div>
+<div id="s15_box2" class=" ">
+          <div class="s15_step " style="">
+            <h3>1. Identify the words that blink (stand out)</h3>
+            <p>“I’m having <span class="redText">trouble</span> with one of my team memebers.  He seems to lack <span class="redText">motivation</span> for the job”. </p>
+          </div>
+          <div class="s15_step" >
+            <h3>2. Ask about one of the blinking words</h3>
+            <p>“What kind of trouble?” or  “How does he seem to lack motivation?” </p>
+          </div>
+          <div class="s15_step ">
+            <h3>3. Listen for the answer</h3>
+            <p>“He’s not as <span class="redText">productive</span> as he used to be”.</p>
+          </div>
+          <div class="s15_step ">
+            <h3 class="twoLines">4. Notice the blinking word in the answer and question it</h3>
+            <p>“How has his productivity dropped?”</p>
+          </div>
+          <div class="s15_step ">
+            <h3>5. Listen for the answer</h3>
+            <p>“He gets <span class="redText">less</span> work done in a week and  the <span class="redText">quality</span> has slipped too”. </p>
+          </div>
+          <div class="s15_step ">
+            <h3 class="twoLines">6. Notice the blinking words in the answer and question it</h3>
+            <p>“Why do you think he is getting less work done?” or  “Tell me about the slip in quality” </p>
+          </div>
+          <div class="s15_step " id="s15_finalstep">
+            <h3 class="twoLines">7. Keep going, listening for the blinking words and asking about them</h3>
+
+          </div>          
+          
+        </div>
+
+        
+        
+        
+        
+      </div>
+    </section>
+    
+    <!--//////////////////////////////////////////////////////////////////////// END SECTION-->
+    
+<!--    <section id="section_14"  class="delay_10"> 
+
+      <style>
+
+</style>
+
+      <div class="page">
+        <div class="blocker"><span></span></div>
+        <div id="s14_box1" class="textBlock ie9_ani">
+       
+        </div>
+      </div>
+    </section>-->
+    
+    <!--//////////////////////////////////////////////////////////////////////// END SECTION-->
+  <!--  
+    <section id="section_15"  class="delay_10 hasActivity"> 
+
+      
+      <div class="blocker"><span></span></div>
+      <h1>Blinking Word scenario</h1>
+      <div class="page">
+        <div id="s15_box1" class="textBlock">
+          <p><strong>Click</strong> through activity. Initially starts off with Step 1. The arrow needs to be clicked to reveal the next stage.</p>
+        </div>
+        
+      </div>
+    </section>-->
+    
+    <!--//////////////////////////////////////////////////////////////////////// END SECTION-->
+    
+    <section id="section_16"  class="delay_10 last" data-mp3="t1_s16_aud"> 
+      
+      <!-- STYLES SECTION 16 -->
+      <style>
+	#section_16{
+		background-color:rgba(60,95,135,1.00);
+	}
+	#section_16 h1{
+		/*background-image:none !important;*/
+	}
+	#section_16 .largeFont{
+		font-weight:bold;
+		font-size:24px;
+	}
+	#s16_box1{
+		position:absolute;
+		left:530px;
+		top:130px;
+		opacity:0
+	}
+	#s16_box2{
+		width:420px;
+		color:#fff;
+		font-size:18px;
+		opacity:0
+	}
+
+</style>
+      
+      <!-- END STYLE SECTION 16 -->
+      
+      <div class="blocker"><span></span></div>
+      <h1>Conclusion</h1>
+      <div class="page">
+      <div id="s16_box2" class="textBlock ie9_ani">
+          <p>You have now come to the end of this learning byte.</p>
+          <p>If there's one thing you take away from this module, remember this:</p>
+          <p>&nbsp;</p>
+          <p align="center">A <span class="largeFont">conversation that matters</span> requires trust.</p>
+          <p>&nbsp;</p>
+          <p>Now go out there and <span class="largeFont">create, build</span> and  <span class="largeFont">earn</span> it, everyday!</p>
+          <p>&nbsp;</p>
+          <p>Oh, and there's <span class="largeFont">one more</span> thing... </p>
+      </div>
+      <div id="s16_box1" class="textBlock ie9_ani"><img  src="../../assets/images/topics/section16/s16_image_03.jpg" width="373" height="361" alt=""/> </div>
+      </div>
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    
+    <section id="section_17"  class="delay_10 last"> 
+      
+      <!-- STYLES SECTION 16 -->
+  <style>
+
+
+</style>
+      
+      <!-- END STYLE SECTION 17 -->
+      
+      <div class="blocker"><span></span></div>
+      <h1>References</h1>
+      <div class="page">
+
+      <div id="s17_box1" class="textBlock ie9_ani">
+      <p>Links and references for further reading into feedback on this screen.</p> 
+      
+      <p>For further resources and information go to the loop.</p>
+      <p>You can also download:</p>
+      <p><u><a href="../../assets/docs/Trust_Equationsa.pdf" target="_blank" class="alink">Trust  self assessment</a></u></p>
+      <p>&nbsp;</p>
+      <p>Don't forget to check our other learning bytes...</p>
+      <ul>
+        <li>SNAP Conversations</li>
+        <li>The  Gift of Feedback</li>
+      </ul>
+       </div>
+       <div class="saveExit"><a class="btn" onclick="parent.exitCourse(0)" href="javascript:void(0)">Save &amp; Exit</a></div>
+      </div>
+    </section>
+    
+    <!-- #main --> 
+    
+  </div>
+</div>
+<script src="../../script/custom.js"></script> 
+<script src="../../script/ie9.js"></script>
+<script src="../../script/ddscript.js"></script>
+<script type="text/javascript" >
+
+
+$('body').imagesLoaded().done( function( instance ){
+  dbg('all images successfully loaded');
+  imgReady = true;
+  setupPage();     
+})
+
+window.onload = function() {
+    dbg('DEBUG:: window.onload');
+	try{
+    	parent.initPageVars();
+	}catch(e){}
+};
+
+</script>
+</body>
+</html>

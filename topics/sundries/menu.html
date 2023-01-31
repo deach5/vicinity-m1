@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie11 lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie11 lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie11 lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie11 lt-ie10"> <![endif]-->
+<!--[if IE 10]>        <html class="no-js lt-ie11 lt-ie10"> <![endif]-->
+<!--[if gt IE 10]><!-->
+<html class="no-js"><!-- InstanceBegin template="/Templates/master.dwt" codeOutsideHTMLIsLocked="false" -->
+<!--<![endif]-->
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8">
+<title>&nbsp;</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- InstanceBeginEditable name="head" --><!-- InstanceEndEditable -->
+<link rel="stylesheet" type="text/css" href="../../assets/css/normalize.css">
+<link href="../../assets/css/structure_styles.css" rel="stylesheet" type="text/css" />
+<!--[if IE]>
+
+<![endif]-->
+<script src="../../script/plugins/jquery-1.11.0.min.js"></script>
+<script src="../../script/plugins/plugins.js"></script>
+ 
+
+<!-- InstanceBeginEditable name="window-onload" -->
+    <link rel="stylesheet" href="../../assets/css/avia-slider.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="../../script/plugins/jquery.aviaSlider.js"></script>
+
+    <script type="text/javascript" language="javascript">
+        function onLoad() {
+            $('#loader').fadeOut();
+            $('#bodyContent, #footer').show();
+            $('#heros').velocity({ opacity: 1 });
+            parent.hideControls();
+        }
+    </script>
+    <style type="text/css">
+        #heros { background: url(../../assets/images/menu/background.jpg) no-repeat; background-size: cover; }
+        #bodyContent { position: relative; }
+        #cyber-bytes { 
+            position: absolute; bottom: 70px; right: 50px;
+            width: 324px; height: 338px; 
+            background: url(../../assets/images/menu/cyber_bytes.png) no-repeat;  
+        }
+        #cyber-bytes > p {
+            position: absolute; left: 70px; bottom: 90px;
+            color: #fff;
+            font-size: 26px; font-family: "Lato";
+        }
+        #btn-start {
+            position: absolute; right: 0; bottom: 0;
+            background: url(../../assets/images/menu/start_button.png) no-repeat;
+            width: 90px; height: 89px;
+        }
+        #btn-start:hover, #btn-start:focus { background-position: 0px -89px; }
+        #start-here { position: absolute; right: 15px; bottom: 10px; width: 161px; height: 38px; background: url(../../assets/images/menu/start_here.png) no-repeat; }
+        html.ipad #start-here { 
+          bottom: 30px;
+        }
+        #vicinity-logo { position: absolute; left: 20px; bottom: 10px;  width: 122px; height: 56px; }
+        #vicinity-logo > img {display: block; width: 100%; }
+        /* Fix for IE11 which shows the audio buttons even though they're not initialized */
+        body { overflow: hidden; }
+        .mejs-custom-audio { display: none; }
+    </style>
+    <!-- InstanceEndEditable -->
+
+</head>
+<body tabindex="-1">
+<div id="header">
+  
+</div>
+
+<div id="bodyContent">
+<!-- InstanceBeginEditable name="body-content" -->
+        <div id="cyber-bytes">
+            <p>Email <span class="text_purple">Threats</span></p>
+            <a href="../topic0/page1.html" id="btn-start"><span class="sr-only">Start 10 minute activity</span></a>
+        </div>
+        <div id="start-here">
+            <p class="sr-only">Start here</p>
+        </div>
+<!-- InstanceEndEditable -->
+</div>
+
+<div id="pageLoaderDiv"><img src="../../assets/bwtest/loading.gif" width="60" height="20" alt="Audio Loading ..." /></div>
+<div id="footer">
+
+</div>
+<script src="../../script/custom.js"></script> 
+<script type="text/javascript" >
+if (navigator.userAgent.match(/iPad/i) != null) {
+      $('html').addClass('ipad');
+    }
+
+
+$('body').imagesLoaded().done( function( instance ){
+  dbg('all images successfully loaded');
+  imgReady = true;
+  setupPage();     
+})
+
+window.onload = function() {
+    dbg('DEBUG:: window.onload');
+	try{
+    	parent.initPageVars();
+	}catch(e){}    if(typeof player == 'undefined'){
+        player = parent.initAudio('blank') 
+    }
+};
+
+</script>
+<!-- InstanceBeginEditable name="footer-script" -->
+    <script type="text/javascript" language="javascript">
+
+    </script>
+    <!-- InstanceEndEditable -->
+</body>
+<!-- InstanceEnd --></html>
